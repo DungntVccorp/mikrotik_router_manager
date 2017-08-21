@@ -3,7 +3,9 @@
 import PackageDescription
 //swift package -Xlinker -L/usr/local/lib generate-xcodeproj
 let package = Package(
-    name: "MK_API",
+    name: "mikrotik_router_manager",
+    targets: [Target(name: "SERVER", dependencies:["CORE"]),
+              ],
     dependencies: [
         .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", Version(0,12,61)),
         .Package(url: "https://github.com/krzyzanowskim/CryptoSwift.git",Version(0,6,9)),

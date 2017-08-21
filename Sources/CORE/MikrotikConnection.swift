@@ -35,7 +35,11 @@ public class Sentence{
     var returnType : ReturnType = .NONE /// 0 = NONE
     var SentenceData = Array<Array<String>>()
     var isDone : Bool = false
+    private var oldData : Data!
     func ReadLength(data : Data) -> (Int,Int){ /// LEN - SIZE
+        if data.count < 1 {
+            return (-1,0)
+        }
         let firstChar = data[0]
         if (firstChar & 0xE0) == 0xE0 {
             
@@ -78,6 +82,15 @@ public class Sentence{
         }
         
     }
+    func updateData(data : Data){
+        if oldData != nil {
+            oldData.append(data)
+            self.unPackRe(data: oldData)
+            oldData = nil
+        }else{
+            self.unPackRe(data: data)
+        }
+    }
     
     func unPackDone(data : Data){
         let len = self.ReadLength(data: data)
@@ -94,7 +107,7 @@ public class Sentence{
         let len = self.ReadLength(data: data)
         if len.0 > 0 {
             let contentData = data.subdata(in: len.1..<len.0+len.1)
-            if let strContent = String(data: contentData, encoding: String.Encoding.utf8){
+            if let strContent = String(data: contentData, encoding: String.Encoding.ascii){
                 SentenceData.append([strContent])
             }
             self.unPackTrap(data: data.subdata(in: len.0+len.1..<data.count))
@@ -102,20 +115,31 @@ public class Sentence{
     }
     
     func unPackRe(data : Data){
-        
         let len = self.ReadLength(data: data)
+        if len.0 < 0 {
+            return
+        }
+        if data.count < len.1 || data.count < len.0 + len.1 {
+            oldData = data
+            return // dư data
+        }
         let contentData = data.subdata(in: len.1..<len.0+len.1)
         if let strContent = String(data: contentData, encoding: String.Encoding.utf8){
             if strContent.isEmpty == false {
                 if strContent == "!re" {
                     SentenceData.append([])
                 }else{
-                    SentenceData[SentenceData.count - 1].append(strContent)
+                    if strContent != "!done" {
+                        SentenceData[SentenceData.count - 1].append(strContent)
+                    }
                 }
                 //SentenceData.append(strContent)
             }
+            print(strContent)
             if strContent != "!done" {
                 self.unPackRe(data: data.subdata(in: len.0+len.1..<data.count))
+            }else{
+                isDone = true
             }
             
         }
@@ -250,14 +274,27 @@ class MikrotikConnection{
             }
             /// send abc
             success = self.send(word: api, endsentence: true)
+            //_ = self.send(word: "?name=test", endsentence: true)
             guard success == true else {
                 tcpSocket.close()
                 return (false,MikrotikConnectionError.API,nil)
             }
-            data.removeAll()
-            lenRead = 0
-            lenRead =  try tcpSocket.read(into: &data)
-            let sentenceData = try Sentence(data: data)
+            
+            var sentenceData : Sentence!
+            repeat{
+                data.removeAll()
+                lenRead = 0
+                lenRead =  try tcpSocket.read(into: &data)
+                if sentenceData == nil {
+                    sentenceData = try Sentence(data: data)
+                }
+                else{
+                    sentenceData.updateData(data: data)
+                    print("UPDATE -> \(sentenceData.isDone)")
+                }
+            }while !sentenceData.isDone
+            
+            
             tcpSocket.close()
             return (true,nil,sentenceData)
             

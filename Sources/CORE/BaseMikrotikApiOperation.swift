@@ -46,6 +46,9 @@ public class BaseMikrotikApiOperation: BaseOperation {
         return ""
     }
     
+    
+    
+    
     public func toRouter() -> MikrotikRouter?{
         return nil
     }

@@ -24,15 +24,17 @@ public class HttpServerComponent : BaseComponent{
         Kitura.addHTTPServer(onPort: 8080, with: router)
         
         let users = ["John" : "12345", "Mary" : "qwerasdf"]
-        let basicCredentials = CredentialsHTTPBasic(verifyPassword: { userId, password, callback in
-            if let storedPassword = users[userId], storedPassword == password {
-                callback(UserProfile(id: userId, displayName: userId, provider: "HTTPBasic"))
-            } else {
-                callback(nil)
+        let digestCredentials = CredentialsHTTPDigest(userProfileLoader: { userId, callback in
+            if let storedPassword = users[userId] {
+                callback(UserProfile(id: userId, displayName: userId, provider: "HTTPDigest"), storedPassword)
             }
-        })
+            else {
+                callback(nil, nil)
+            }
+        }, opaque: "0a0b0c0d", realm: "Kitura-users")
         
-        credentials.register(plugin: basicCredentials)
+        credentials.register(plugin: digestCredentials)
+        
         router.all("/", middleware: credentials)
     }
     public override func start() {

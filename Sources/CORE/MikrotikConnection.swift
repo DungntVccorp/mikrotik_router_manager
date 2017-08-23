@@ -25,6 +25,7 @@ public enum SentenceError : Error{
 public enum MikrotikConnectionError : Error{
     case LOGIN
     case API
+    case MISSING_PARAM
     case UNKNOW
 }
 
@@ -45,8 +46,11 @@ public class Sentence{
             
         }else if (firstChar & 0xC0) == 0xC0 {
             
-        }else if (firstChar & 0x80) == 0x80 {
-            
+        }else if (firstChar & 0x80) == 0x80 { // 2-byte encoded length
+            var c = Int(firstChar)
+             c = c & ~0xC0;
+             c = (c << 8) | Int(data[1])
+            return (c,2)
         }else { // assume 1-byte encoded length...same on both LE and BE systems
             return (Int(firstChar),1)
         }
@@ -135,7 +139,6 @@ public class Sentence{
                 }
                 //SentenceData.append(strContent)
             }
-            print(strContent)
             if strContent != "!done" {
                 self.unPackRe(data: data.subdata(in: len.0+len.1..<data.count))
             }else{
@@ -164,51 +167,61 @@ class MikrotikConnection{
     }
     
     func send(word : String,endsentence : Bool) -> Bool{
-        if let data = word.data(using: String.Encoding.utf8){
-            var len = data.count
-            do{
-                
-                if len < 0x80 {
-                    var data = Data()
-                    data.append([UInt8(len)], count: 1)
-                    try self.tcpSocket.write(from: data)
-                }else if len < 0x4000 {
-                    len = len | 0x8000;
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
-                }else if len < 0x20000 {
-                    len = len | 0xC00000;
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
-                }
-                else if len < 0x10000000 {
-                    len = len | 0xE0000000;
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 24)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
-                }else{
-                    try self.tcpSocket.write(from: Data(bytes: [0xF0]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 24)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
-                    try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
-                }
-                try self.tcpSocket.write(from: data)
-                if endsentence {
+        if word.isEmpty {
+            if endsentence {
+                do{
                     try self.tcpSocket.write(from: Data(bytes: [0x0]))
+                }catch{
+                    return false
                 }
-                return true
-            }catch{
-                return false
             }
-            
+            return true
+        }else{
+            if let data = word.data(using: String.Encoding.utf8){
+                var len = data.count
+                do{
+                    
+                    if len < 0x80 {
+                        var data = Data()
+                        data.append([UInt8(len)], count: 1)
+                        try self.tcpSocket.write(from: data)
+                    }else if len < 0x4000 {
+                        len = len | 0x8000;
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
+                    }else if len < 0x20000 {
+                        len = len | 0xC00000;
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
+                    }
+                    else if len < 0x10000000 {
+                        len = len | 0xE0000000;
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 24)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
+                    }else{
+                        try self.tcpSocket.write(from: Data(bytes: [0xF0]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 24)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 16)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len >> 8)]))
+                        try self.tcpSocket.write(from: Data(bytes: [UInt8(len)]))
+                    }
+                    try self.tcpSocket.write(from: data)
+                    if endsentence {
+                        try self.tcpSocket.write(from: Data(bytes: [0x0]))
+                    }
+                    return true
+                }catch{
+                    return false
+                }
+                
+            }
         }
         return false
     }
-    
-    func sendAPI(api : String) -> (Bool,MikrotikConnectionError?,Sentence?){ // ISSUCCESS - ERROR - Sentence
+    func sendAPI(api : String , params : Dictionary<String,String>? = nil,apiType : ApiType = .GET,querys : Dictionary<String,String>? = nil,uid : String? = nil) -> (Bool,MikrotikConnectionError?,Sentence?){ // ISSUCCESS - ERROR - Sentence
         do {
             tcpSocket = try Socket.create()
             tcpSocket.readBufferSize = 4096
@@ -273,30 +286,189 @@ class MikrotikConnection{
                 return (false,MikrotikConnectionError.LOGIN,nil)
             }
             /// send abc
-            success = self.send(word: api, endsentence: true)
-            //_ = self.send(word: "?name=test", endsentence: true)
-            guard success == true else {
+            
+            if apiType == .GET {
+                success = self.send(word: api, endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                success = self.send(word: "=detail=", endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                if querys != nil {
+                    var i = 0
+                    for p in querys! {
+                        i = i + 1
+                        success = self.send(word: "?\(p.key)=\(p.value)", endsentence: false)
+                        guard success == true else {
+                            tcpSocket.close()
+                            return (false,MikrotikConnectionError.API,nil)
+                            
+                        }
+                    }
+                }
+                success = self.send(word: "", endsentence: true)
+                
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                
+                var sentenceData : Sentence!
+                repeat{
+                    data.removeAll()
+                    lenRead = 0
+                    lenRead =  try tcpSocket.read(into: &data)
+                    if sentenceData == nil {
+                        sentenceData = try Sentence(data: data)
+                    }
+                    else{
+                        sentenceData.updateData(data: data)
+                    }
+                }while !sentenceData.isDone
+                
+                
                 tcpSocket.close()
-                return (false,MikrotikConnectionError.API,nil)
+                return (true,nil,sentenceData)
+            }else if apiType == .SET{
+                if params == nil || uid == nil {
+                    return (false,MikrotikConnectionError.MISSING_PARAM,nil)
+                }
+                success = self.send(word: api, endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                success = self.send(word: "=.id=\(uid!)", endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                
+                
+                if params != nil {
+                    var i = 0
+                    for p in params! {
+                        i = i + 1
+                        success = self.send(word: "=\(p.key)=\(p.value)", endsentence: false)
+                        guard success == true else {
+                            tcpSocket.close()
+                            return (false,MikrotikConnectionError.API,nil)
+                            
+                        }
+                    }
+                }
+                success = self.send(word: "", endsentence: true)
+                
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                
+                var sentenceData : Sentence!
+                repeat{
+                    data.removeAll()
+                    lenRead = 0
+                    lenRead =  try tcpSocket.read(into: &data)
+                    if sentenceData == nil {
+                        sentenceData = try Sentence(data: data)
+                    }
+                    else{
+                        sentenceData.updateData(data: data)
+                    }
+                }while !sentenceData.isDone
+                
+                
+                tcpSocket.close()
+                return (true,nil,sentenceData)
+                
+                
+            }else if apiType == .ADD{
+                if params == nil {
+                    return (false,MikrotikConnectionError.MISSING_PARAM,nil)
+                }
+                success = self.send(word: api, endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                if params != nil {
+                    var i = 0
+                    for p in params! {
+                        i = i + 1
+                        success = self.send(word: "=\(p.key)=\(p.value)", endsentence: false)
+                        guard success == true else {
+                            tcpSocket.close()
+                            return (false,MikrotikConnectionError.API,nil)
+                            
+                        }
+                    }
+                }
+                success = self.send(word: "", endsentence: true)
+                
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                
+                var sentenceData : Sentence!
+                repeat{
+                    data.removeAll()
+                    lenRead = 0
+                    lenRead =  try tcpSocket.read(into: &data)
+                    if sentenceData == nil {
+                        sentenceData = try Sentence(data: data)
+                    }
+                    else{
+                        sentenceData.updateData(data: data)
+                    }
+                }while !sentenceData.isDone
+                
+                
+                tcpSocket.close()
+                return (true,nil,sentenceData)
+                
+            }else{ // DELETE
+                if uid == nil {
+                    return (false,MikrotikConnectionError.MISSING_PARAM,nil)
+                }
+                success = self.send(word: api, endsentence:false)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                success = self.send(word: "=.id=\(uid!)", endsentence:true)
+                guard success == true else {
+                    tcpSocket.close()
+                    return (false,MikrotikConnectionError.API,nil)
+                }
+                var sentenceData : Sentence!
+                repeat{
+                    data.removeAll()
+                    lenRead = 0
+                    lenRead =  try tcpSocket.read(into: &data)
+                    if sentenceData == nil {
+                        sentenceData = try Sentence(data: data)
+                    }
+                    else{
+                        sentenceData.updateData(data: data)
+                    }
+                }while !sentenceData.isDone
+                
+                
+                tcpSocket.close()
+                return (true,nil,sentenceData)
             }
             
-            var sentenceData : Sentence!
-            repeat{
-                data.removeAll()
-                lenRead = 0
-                lenRead =  try tcpSocket.read(into: &data)
-                if sentenceData == nil {
-                    sentenceData = try Sentence(data: data)
-                }
-                else{
-                    sentenceData.updateData(data: data)
-                    print("UPDATE -> \(sentenceData.isDone)")
-                }
-            }while !sentenceData.isDone
+            return (false,MikrotikConnectionError.UNKNOW,nil)
             
             
-            tcpSocket.close()
-            return (true,nil,sentenceData)
+            
+            //_ = self.send(word: "?name=test", endsentence: true)
+            
             
         } catch  {
             return (false,MikrotikConnectionError.UNKNOW,nil)

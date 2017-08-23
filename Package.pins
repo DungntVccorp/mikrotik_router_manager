@@ -14,10 +14,22 @@
       "version": "0.1.1"
     },
     {
+      "package": "CommonCrypto",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/CommonCrypto.git",
+      "version": "0.1.4"
+    },
+    {
       "package": "CryptoSwift",
       "reason": null,
       "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
       "version": "0.6.9"
+    },
+    {
+      "package": "Cryptor",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/BlueCryptor.git",
+      "version": "0.8.16"
     },
     {
       "package": "HeliumLogger",
@@ -30,6 +42,24 @@
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/Kitura.git",
       "version": "1.7.6"
+    },
+    {
+      "package": "Kitura-Credentials",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-Credentials.git",
+      "version": "1.7.2"
+    },
+    {
+      "package": "Kitura-CredentialsHTTP",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git",
+      "version": "1.8.0"
+    },
+    {
+      "package": "Kitura-Session",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-Session.git",
+      "version": "1.7.0"
     },
     {
       "package": "Kitura-TemplateEngine",

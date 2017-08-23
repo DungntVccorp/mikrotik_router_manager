@@ -9,7 +9,7 @@
 import Foundation
 import LoggerAPI
 
-public enum ApiType {
+public enum ApiResultType {
     case NONE
     case DONE
     case RESULT
@@ -18,6 +18,13 @@ public enum ApiType {
     case TRAP
     
 }
+public enum ApiType {
+    case SET
+    case GET
+    case ADD
+    case DEL
+}
+
 
 public class MikrotikRouter{
     var userName : String!
@@ -46,15 +53,26 @@ public class BaseMikrotikApiOperation: BaseOperation {
         return ""
     }
     
+    public func apiType() -> ApiType{
+        return .GET
+    }
     
-    
+    public func queryParam() -> Dictionary<String,String>?{
+        return nil
+    }
+    public func uidString() -> String?{
+        return nil
+    }
     
     public func toRouter() -> MikrotikRouter?{
         return nil
     }
     
+    public func params() -> Dictionary<String,String>?{
+        return nil
+    }
     
-    public func onReply(type : ApiType,tag : String,response : String){
+    public func onReply(isSuccess : Bool,error : MikrotikConnectionError?,response : Sentence?){
         
     }
     
@@ -62,14 +80,13 @@ public class BaseMikrotikApiOperation: BaseOperation {
         let apistr = apiString()
         let router = toRouter()
         if apistr.isEmpty || router == nil {
+            Log.warning("router NIL || apistr NIL")
             return
         }
         
         let mk =  MikrotikConnection(host: router!.hostName, port: router!.hostPort, userName: router!.userName, password: router!.password)
-        let response = mk.sendAPI(api: apistr)
-        if response.0 {
-            print(response.2!.SentenceData)
-        }
+        let response = mk.sendAPI(api: apistr, params: params(),apiType: self.apiType(),querys : self.queryParam(),uid: uidString())
+        onReply(isSuccess: response.0, error: response.1, response: response.2)
         
         /// LOGIN
         

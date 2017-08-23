@@ -14,7 +14,7 @@ public class OperationManager : BaseComponent{
         return .Operation
     }
     public override func loadConfig() {
-        self.operationQueue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
+        self.operationQueue.maxConcurrentOperationCount = 1//OperationQueue.defaultMaxConcurrentOperationCount
         self.operationQueue.qualityOfService = .default
     }
     public override func start() {

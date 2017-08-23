@@ -1,4 +1,14 @@
 # mikrotik_router_manager
 
-Mikrotik API for swift running on ubuntu 16.10 or mac osx \n
+Mikrotik API for swift running on ubuntu 16.10 or mac osx and ubunut
+
 https://wiki.mikrotik.com/wiki/Manual:API
+
+
+BUILD ON MAC OSX
+
+run sh generate-xcodeproj.sh
+
+BUILD ON UBUNTU
+
+run swift build

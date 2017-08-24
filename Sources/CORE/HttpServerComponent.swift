@@ -23,21 +23,59 @@ public class HttpServerComponent : BaseComponent{
     public override func loadConfig() {
         Kitura.addHTTPServer(onPort: 8080, with: router)
         
-        let users = ["John" : "12345", "Mary" : "qwerasdf"]
-        let digestCredentials = CredentialsHTTPDigest(userProfileLoader: { userId, callback in
-            if let storedPassword = users[userId] {
-                callback(UserProfile(id: userId, displayName: userId, provider: "HTTPDigest"), storedPassword)
+        let users = ["dungnt" : "12345","admin":"12345"]
+        let basicCredentials = CredentialsHTTPBasic(verifyPassword: { userId, password, callback in
+            if let storedPassword = users[userId], storedPassword == password {
+                callback(UserProfile(id: userId, displayName: userId, provider: "HTTPBasic"))
+            } else {
+                callback(nil)
             }
-            else {
-                callback(nil, nil)
-            }
-        }, opaque: "0a0b0c0d", realm: "Kitura-users")
+        })
         
-        credentials.register(plugin: digestCredentials)
+        credentials.register(plugin: basicCredentials)
         
         router.all("/", middleware: credentials)
+        
+        self.routerAPI()
     }
     public override func start() {
         Kitura.run()
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //// ----------------------------------------- API ROUTER -------------------------------------------------///
+    /// GET LIST ROUTER
+    func routerAPI(){
+        router.get("/api/router") { (routerRequest, routerResponse, next) in
+            do{
+                try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router", onCompletion: { (results) in
+                    if(results.success){
+                        routerResponse.send(json: results.asRows!)
+                    }else{
+                        routerResponse.send(json: ["ERROR","ERROR DATABASE"])
+                    }
+                })
+            }catch{
+                routerResponse.send(json: ["ERROR","ERROR DATABASE"])
+            }
+            
+            next()
+        }
+    }
+    
+    
+    
+    
+    
+    
 }

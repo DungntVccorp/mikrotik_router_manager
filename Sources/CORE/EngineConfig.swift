@@ -23,5 +23,10 @@ extension Engine{ /// extension register
     }
 }
 public extension Engine{ /// extension get component
-
+    public func mySQLConnection() -> MysqlConnection?{
+        if let op = self.getComponent(type: ComponentType.DataBase) as? MysqlConnection{
+            return op
+        }
+        return nil
+    }
 }

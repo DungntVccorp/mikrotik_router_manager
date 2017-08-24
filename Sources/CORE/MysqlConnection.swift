@@ -1,14 +1,14 @@
 
 
 
-public class MysqlConnection : BaseComponent{
-    public func componentType() -> ComponentType{
+ class MysqlConnection : BaseComponent{
+    override func componentType() -> ComponentType{
       return ComponentType.DataBase
     }
-    public func start(){
+    override func start(){
       print("MysqlConnection start")
     }
-    public func loadConfig(){
+    override func loadConfig(){
 
     }
 }

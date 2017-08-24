@@ -13,6 +13,7 @@ extension Engine{ /// extension register
         registerComponent(component: LogComponent())
         registerComponent(component: OperationManager())
         registerComponent(component: HttpServerComponent())
+        registerComponent(component: MysqlConnection())
     }
     public func operationManager() -> OperationManager?{
         if let op = self.getComponent(type: ComponentType.Operation) as? OperationManager{
@@ -22,6 +23,5 @@ extension Engine{ /// extension register
     }
 }
 public extension Engine{ /// extension get component
-    
-}
 
+}

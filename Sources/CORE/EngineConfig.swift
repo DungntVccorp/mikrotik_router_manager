@@ -10,6 +10,7 @@ import Foundation
 
 extension Engine{ /// extension register
     func loadConfig(){
+        registerComponent(component: SessionManager())
         registerComponent(component: LogComponent())
         registerComponent(component: OperationManager())
         registerComponent(component: HttpServerComponent())
@@ -25,6 +26,12 @@ extension Engine{ /// extension register
 public extension Engine{ /// extension get component
     public func mySQLConnection() -> MysqlConnection?{
         if let op = self.getComponent(type: ComponentType.DataBase) as? MysqlConnection{
+            return op
+        }
+        return nil
+    }
+    public func Session() -> SessionManager?{
+        if let op = self.getComponent(type: ComponentType.Session) as? SessionManager{
             return op
         }
         return nil

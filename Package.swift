@@ -7,6 +7,7 @@ let package = Package(
     targets: [Target(name: "SERVER", dependencies:["CORE"]),
               ],
     dependencies: [
+        .Package(url: "https://github.com/IBM-Swift/Configuration.git",Version(1,0,1)),
         .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", Version(0,12,61)),
         .Package(url: "https://github.com/krzyzanowskim/CryptoSwift.git",Version(0,6,9)),
         .Package(url: "https://github.com/IBM-Swift/SwiftKueryMySQL.git",Version(0,13,1)),

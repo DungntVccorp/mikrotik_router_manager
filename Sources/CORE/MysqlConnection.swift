@@ -1,6 +1,6 @@
 import SwiftKueryMySQL
 import SwiftKuery
-
+import LoggerAPI
 
 public enum executeError : Error {
     case NoConnected
@@ -15,34 +15,20 @@ public class MysqlConnection : BaseComponent{
       return ComponentType.DataBase
     }
     public override func start(){
-      print("MysqlConnection start")
-        
+        mysqlConnection = MySQLConnection(host: Engine.sharedInstance.Session()?.mysqlHostName ?? "", user: Engine.sharedInstance.Session()?.mysqlUserName ?? "", password: Engine.sharedInstance.Session()?.mysqlPassword ?? "", database: Engine.sharedInstance.Session()?.mysqlDBName ?? "", port: 3306, unixSocket: nil, clientFlag: 0, characterSet: nil, reconnect: true)
         mysqlConnection.connect { error in
-            /// CREATE
-//            mysqlConnection.execute("select * from tbl_router") { results in
-//                for r in results.asRows!{
-//                    print(r["id"])
-//                }
-//            }
-            /// ADD
-//            mysqlConnection.execute("INSERT INTO `tbl_router` (`name` , `username` , `password` , `ip_address` , `description`) VALUES ('d','admin','123456','10.10.10.2','test');", onCompletion: { queryResult in
-//                print(queryResult)
-//                print(queryResult.success)
-//            })
-                /// UPDATE
-//            mysqlConnection.execute("update `tbl_router` set `name`='test doi ten' WHERE `id` = 3", onCompletion: { result in
-//                print(result.success)
-//            })
-            /// DELETE
-//            mysqlConnection.execute("DELETE FROM `tbl_router` WHERE id = 2", onCompletion: { (result) in
-//                print(result.success)
-//            })
-            
-            
+            Log.info("MYSQL CONNECTED")
+            if error != nil {
+                Log.info("MYSQL CONFIG FAILURE")
+                fatalError()
+            }
         }
     }
     public override func loadConfig(){
-        mysqlConnection = MySQLConnection(host: "localhost", user: "root", password: "123456", database: "router_manager", port: 3306, unixSocket: nil, clientFlag: 0, characterSet: nil, reconnect: true)
+        
+        
+        
+        
         
     }
     

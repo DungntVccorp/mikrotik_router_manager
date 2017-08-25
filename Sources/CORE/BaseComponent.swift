@@ -15,6 +15,7 @@ public enum ComponentType {
     case HttpServer
     case Operation
     case Logging
+    case Session
 }
 public class BaseComponent {
     

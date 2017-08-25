@@ -49,6 +49,17 @@ public class BaseMikrotikApiOperation: BaseOperation {
     public var user : String = ""
     public var pass : String = ""
     
+    var _onSuccess : ((Any?) -> Void)?
+    var _onFailure : ((Error?) -> Void)?
+    
+    public init(onSuccess : ((Any?) -> Void)? = nil,onFailure : ((Error?) -> Void)? = nil) {
+        super.init()
+        _onSuccess = onSuccess
+        _onFailure = onFailure
+    }
+    
+    
+    
     public func apiString() -> String{
         return ""
     }

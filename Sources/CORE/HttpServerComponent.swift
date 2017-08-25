@@ -35,8 +35,9 @@ public class HttpServerComponent : BaseComponent{
         credentials.register(plugin: basicCredentials)
         
         router.all("/", middleware: credentials)
-        
+        router.all(middleware: BodyParser())
         self.routerAPI()
+        device_interface_test()
     }
     public override func start() {
         Kitura.run()
@@ -56,7 +57,8 @@ public class HttpServerComponent : BaseComponent{
     //// ----------------------------------------- API ROUTER -------------------------------------------------///
     /// GET LIST ROUTER
     func routerAPI(){
-        router.get("/api/router") { (routerRequest, routerResponse, next) in
+        let api = "/api/router"
+        router.get(api) { (routerRequest, routerResponse, next) in
             do{
                 try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router", onCompletion: { (results) in
                     if(results.success){
@@ -71,9 +73,69 @@ public class HttpServerComponent : BaseComponent{
             
             next()
         }
+        
+        router.post(api) { (routerRequest, routerResponse, next) in
+            do{
+                print(routerRequest)
+               
+                var user_name : String?
+                var password : String?
+                var ip_adddress : String?
+                var name : String?
+                var des : String?
+                for p in (routerRequest.body?.asMultiPart ?? []){
+                    if(p.name == "name"){
+                        name = p.body.asText
+                    }else if p.name == "ip_address" {
+                        ip_adddress = p.body.asText
+                    }else if p.name == "username"{
+                        user_name = p.body.asText
+                    }else if p.name == "password" {
+                        password = p.body.asText
+                    }else if p.name == "description" {
+                        des = p.body.asText
+                    }
+                }
+                
+                guard user_name != nil && ip_adddress != nil && name != nil && password != nil else{
+                    routerResponse.send(json: ["ERROR","ERROR INVALID"])
+                    next()
+                    return
+                }
+                
+                
+                try Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")')", onCompletion: { (results) in
+                    if(results.success){
+                        routerResponse.send(json: ["OK":"CREATED"])
+                    }else{
+                        routerResponse.send(json: ["ERROR","ERROR DATABASE"])
+                    }
+                })
+            }catch{
+                routerResponse.send(json: ["ERROR","ERROR DATABASE"])
+            }
+            next()
+        }
     }
     
-    
+    //// ----------------------------------------- API DEVICE -------------------------------------------------///
+    func device_interface_test(){
+        let test = "api/device/interface"
+        router.get(test) { (routerRequest, routerResponse, next) in
+            
+            let getListInterface = GetListInterface(onSuccess: { (params) in
+                routerResponse.send(json: ["Data":params ?? []])
+                next()
+            }, onFailure: { (error) in
+                routerResponse.send(json: ["ERROR" :"DEO BIET"])
+                next()
+            })
+            
+            Engine.sharedInstance.operationManager()?.enqueue(operation: getListInterface)
+            
+            
+        }
+    }
     
     
     

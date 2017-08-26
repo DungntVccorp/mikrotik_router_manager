@@ -1,18 +1,15 @@
 //
-//  GetListInterface.swift
+//  GetListHospot.swift
 //  mikrotik_router_manager
 //
-//  Created by dung.nt on 8/23/17.
+//  Created by dung.nt on 8/26/17.
 //
 //
 
 import Foundation
-public class GetListInterface : GetBaseOperation{
+public class GetListHospot: GetBaseOperation {
     public override func apiString() -> String {
-        return "/ip/hotspot/user/getall"
-    }
-    public override func queryParam() -> Dictionary<String, String>? {
-        return nil//[".id":"*2"]
+        return "/ip/hotspot/getall"
     }
     public override func onReply(isSuccess: Bool, error: MikrotikConnectionError?, response: Sentence?) {
         if isSuccess {

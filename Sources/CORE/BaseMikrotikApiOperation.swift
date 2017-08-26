@@ -44,10 +44,10 @@ public class MikrotikRouter{
 
 public class BaseMikrotikApiOperation: BaseOperation {
     
-    public var host : String = ""
-    public var port : Int = 0
-    public var user : String = ""
-    public var pass : String = ""
+    public var host : String!
+    public var port : Int = 8728
+    public var user : String!
+    public var pass : String!
     
     var _onSuccess : ((Any?) -> Void)?
     var _onFailure : ((Error?) -> Void)?
@@ -58,7 +58,13 @@ public class BaseMikrotikApiOperation: BaseOperation {
         _onFailure = onFailure
     }
     
-    
+    public func config(router_ip : String,router_username : String,router_password : String,router_port : Int = 8728) -> BaseMikrotikApiOperation{
+        self.port = router_port
+        self.host = router_ip
+        self.user = router_username
+        self.pass = router_password
+        return self
+    }
     
     public func apiString() -> String{
         return ""
@@ -75,10 +81,6 @@ public class BaseMikrotikApiOperation: BaseOperation {
         return nil
     }
     
-    public func toRouter() -> MikrotikRouter?{
-        return nil
-    }
-    
     public func params() -> Dictionary<String,String>?{
         return nil
     }
@@ -89,13 +91,13 @@ public class BaseMikrotikApiOperation: BaseOperation {
     
     public override func main() {
         let apistr = apiString()
-        let router = toRouter()
-        if apistr.isEmpty || router == nil {
+        if apistr.isEmpty || host == nil || host.isEmpty || user == nil || user.isEmpty || pass == nil || pass.isEmpty {
             Log.warning("router NIL || apistr NIL")
             return
         }
         
-        let mk =  MikrotikConnection(host: router!.hostName, port: router!.hostPort, userName: router!.userName, password: router!.password)
+        
+        let mk =  MikrotikConnection(host: host, port: port, userName: user, password: pass)
         let response = mk.sendAPI(api: apistr, params: params(),apiType: self.apiType(),querys : self.queryParam(),uid: uidString())
         onReply(isSuccess: response.0, error: response.1, response: response.2)
         

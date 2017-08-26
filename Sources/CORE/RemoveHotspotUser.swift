@@ -11,9 +11,6 @@ public class RemoveHotspotUser: RemoveBaseOperation {
     public override func apiString() -> String {
         return "/ip/hotspot/user/remove"
     }
-    public override func toRouter() -> MikrotikRouter? {
-        return MikrotikRouter("admin", "123456", "10.3.2.149")
-    }
     public override func uidString() -> String? {
         return "*3"
     }

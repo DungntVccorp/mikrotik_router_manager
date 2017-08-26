@@ -11,9 +11,6 @@ public class UpdateHotspotUser : UpdateBaseOperation{
     public override func apiString() -> String {
         return "/ip/hotspot/user/set"
     }
-    public override func toRouter() -> MikrotikRouter? {
-        return MikrotikRouter("admin", "123456", "10.3.2.149")
-    }
     public override func uidString() -> String? {
         return "*2"
     }

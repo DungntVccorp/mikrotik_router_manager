@@ -18,13 +18,13 @@ extension HttpServerComponent{
             do{
                 try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router", onCompletion: { (results) in
                     if(results.success){
-                        routerResponse.send(json: results.asRows!)
+                        routerResponse.send(json: ["status":200,"data":results.asRows!])
                     }else{
-                        routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                        routerResponse.send(json: ["status":400,"message":"\(results.asError?.localizedDescription ?? "Execute Error")"])
                     }
                 })
             }catch{
-                routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                routerResponse.send(json: ["status":500,"message":"\(error.localizedDescription)"])
             }
             
             next()
@@ -40,7 +40,7 @@ extension HttpServerComponent{
                 }
             }
             guard id_router != nil else{
-                routerResponse.send(json: ["ERROR":"ERROR INVALID"])
+                routerResponse.send(json: ["status":400,"message":"missing id_router"])
                 next()
                 return
             }
@@ -49,15 +49,15 @@ extension HttpServerComponent{
             do{
                 try Engine.sharedInstance.mySQLConnection()?.execute("DELETE FROM `tbl_router` WHERE id = \(id_router ?? "")", onCompletion: { (result) in
                     if(result.success){
-                        routerResponse.send(json: ["OK":"DELETE"])
+                        routerResponse.send(json: ["status":200,"message":"\(result.asValue ?? "")"])
                         
                     }else{
-                        routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                        routerResponse.send(json: ["status":400,"message":"\(result.asError?.localizedDescription ?? "Execute Query Error")"])
                         
                     }
                 })
             }catch{
-                routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                routerResponse.send(json: ["status":500,"message":"\(error.localizedDescription)"])
             }
             next()
         }
@@ -84,7 +84,7 @@ extension HttpServerComponent{
                 }
                 
                 guard user_name != nil && ip_adddress != nil && name != nil && password != nil else{
-                    routerResponse.send(json: ["ERROR":"ERROR INVALID"])
+                    routerResponse.send(json: ["status":400,"message":"missing param"])
                     next()
                     return
                 }
@@ -92,17 +92,17 @@ extension HttpServerComponent{
                 
                 try Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")')", onCompletion: { (results) in
                     if(results.success){
-                        routerResponse.send(json: ["OK":"CREATED"])
+                        routerResponse.send(json: ["status":200,"message":"\(results.asValue ?? "")"])
                         
                     }else{
-                        routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                        routerResponse.send(json: ["status":400,"message":"\(results.asError?.localizedDescription ?? "Unknow error")"])
                         
                     }
                 })
                 
                 next()
             }catch{
-                routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                routerResponse.send(json: ["status":500,"message":"\(error.localizedDescription)"])
                 next()
             }
             
@@ -163,13 +163,13 @@ extension HttpServerComponent{
             }
             
             guard id_router != nil else{
-                routerResponse.send(json: ["ERROR":"ERROR INVALID"])
+                routerResponse.send(json: ["status":400,"message":"missing id_router"])
                 next()
                 return
             }
             
             guard user_name != nil || ip_adddress != nil || name != nil || password != nil else{
-                routerResponse.send(json: ["ERROR":"NOTING UPDATE"])
+                routerResponse.send(json: ["status":400,"message":"no update"])
                 next()
                 return
             }
@@ -179,13 +179,13 @@ extension HttpServerComponent{
             do{
                 try Engine.sharedInstance.mySQLConnection()?.execute("update `tbl_router` set \(strUpdate) WHERE `id` = \(id_router ?? "")", onCompletion: { (result) in
                     if(result.success){
-                        routerResponse.send(json: ["OK":"UPDATED"])
+                        routerResponse.send(json: ["status":200])
                     }else{
-                        routerResponse.send(json: ["ERROR":"ERROR DATABASE"])
+                        routerResponse.send(json: ["status":400,"message":"\(result.asError?.localizedDescription ?? "Unknow Error")"])
                     }
                 })
             }catch{
-                
+                routerResponse.send(json: ["status":500,"message":"\(error.localizedDescription)"])
             }
             
             

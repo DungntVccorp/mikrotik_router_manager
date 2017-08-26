@@ -13,7 +13,7 @@ public class Engine {
     
     private init() {
         loadConfig()
-        loadComponentConfig()
+        
     }
     
     var ListComponent = Dictionary<ComponentType,BaseComponent>()
@@ -26,6 +26,7 @@ public class Engine {
     }
     
     func loadComponentConfig(){
+        
         for c in ListComponent {
             c.value.loadConfig()
         }
@@ -37,6 +38,7 @@ public class Engine {
     }
     
     public func start(){
+        loadComponentConfig()
         startComponent()
     }
 }

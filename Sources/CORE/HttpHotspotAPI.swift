@@ -26,7 +26,7 @@ extension HttpServerComponent{
                                     let router = result[0]
                                     if let ip_address = router["ip_address"] as? String,let username = router["username"] as? String,let password = router["password"] as? String,let port = router["port"] as? Int32{
                                         let gethotspot = GetListHospot(onSuccess: { (params) in
-                                            routerResponse.send("OK")
+                                            routerResponse.send(json: ["status":200,"data":(params ?? [])])
                                             next()
                                         }, onFailure: { (error) in
                                             routerResponse.send(json: ["status":400,"message":error?.localizedDescription ?? "Error get data mikrotik"])

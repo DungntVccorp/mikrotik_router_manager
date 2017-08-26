@@ -17,6 +17,9 @@ public class SessionManager : BaseComponent{
     var mysqlDBName : String = "router_manager"
     
     
+    var http_port : Int = 8080
+    
+    
     
     public let manager = ConfigurationManager()
     

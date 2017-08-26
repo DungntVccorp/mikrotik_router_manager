@@ -85,7 +85,7 @@ public class BaseMikrotikApiOperation: BaseOperation {
         return nil
     }
     
-    public func onReply(isSuccess : Bool,error : MikrotikConnectionError?,response : Sentence?){
+    public func onReply(isSuccess : Bool,error : Error?,response : Sentence?){
         
     }
     

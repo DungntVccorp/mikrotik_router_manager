@@ -14,7 +14,7 @@ public class GetListInterface : GetBaseOperation{
     public override func queryParam() -> Dictionary<String, String>? {
         return nil//[".id":"*2"]
     }
-    public override func onReply(isSuccess: Bool, error: MikrotikConnectionError?, response: Sentence?) {
+    public override func onReply(isSuccess: Bool, error: Error?, response: Sentence?) {
         if isSuccess {
             self._onSuccess?(response?.SentenceData)
         }else{

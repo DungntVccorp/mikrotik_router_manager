@@ -17,7 +17,7 @@ public class UpdateHotspotUser : UpdateBaseOperation{
     public override func params() -> Dictionary<String, String>? {
         return ["disabled":"true"]
     }
-    public override func onReply(isSuccess: Bool, error: MikrotikConnectionError?, response: Sentence?) {
+    public override func onReply(isSuccess: Bool, error: Error?, response: Sentence?) {
         if isSuccess {
             print("SUCCESS \(response?.returnType) \(response?.SentenceData)")
         }else{

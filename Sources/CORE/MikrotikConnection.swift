@@ -34,7 +34,7 @@ public class Sentence{
     
     
     var returnType : ReturnType = .NONE /// 0 = NONE
-    var SentenceData = Array<Array<String>>()
+    var SentenceData = Array<Dictionary<String,String>>()
     var isDone : Bool = false
     private var oldData : Data!
     func ReadLength(data : Data) -> (Int,Int){ /// LEN - SIZE
@@ -81,7 +81,7 @@ public class Sentence{
             self.unPackTrap(data: data.subdata(in: len.0+len.1..<data.count))
         }else if strType == "!re"{
             self.returnType = .RE
-            SentenceData.append([])
+            SentenceData.append([:])
             self.unPackRe(data: data.subdata(in: len.0+len.1..<data.count))
         }
         
@@ -101,7 +101,12 @@ public class Sentence{
         if len.0 > 0 {
             let contentData = data.subdata(in: len.1..<len.0+len.1)
             if let strContent = String(data: contentData, encoding: String.Encoding.utf8){
-                SentenceData.append([strContent])
+                let arr = strContent.components(separatedBy: "=")
+                if arr.count == 3 {
+                    var dic = Dictionary<String,String>()
+                    dic[arr[1]] = arr[2]
+                    SentenceData.append(dic)
+                }
             }
             self.unPackDone(data: data.subdata(in: len.0+len.1..<data.count))
         }
@@ -112,7 +117,12 @@ public class Sentence{
         if len.0 > 0 {
             let contentData = data.subdata(in: len.1..<len.0+len.1)
             if let strContent = String(data: contentData, encoding: String.Encoding.ascii){
-                SentenceData.append([strContent])
+                let arr = strContent.components(separatedBy: "=")
+                if arr.count == 3 {
+                    var dic = Dictionary<String,String>()
+                    dic[arr[1]] = arr[2]
+                    SentenceData.append(dic)
+                }
             }
             self.unPackTrap(data: data.subdata(in: len.0+len.1..<data.count))
         }
@@ -131,10 +141,14 @@ public class Sentence{
         if let strContent = String(data: contentData, encoding: String.Encoding.utf8){
             if strContent.isEmpty == false {
                 if strContent == "!re" {
-                    SentenceData.append([])
+                    SentenceData.append([:])
                 }else{
                     if strContent != "!done" {
-                        SentenceData[SentenceData.count - 1].append(strContent)
+                        let arr = strContent.components(separatedBy: "=")
+                        if arr.count == 3 {
+                            SentenceData[SentenceData.count - 1][arr[1]] = arr[2]
+                        }
+                        
                     }
                 }
                 //SentenceData.append(strContent)
@@ -221,11 +235,11 @@ class MikrotikConnection{
         }
         return false
     }
-    func sendAPI(api : String , params : Dictionary<String,String>? = nil,apiType : ApiType = .GET,querys : Dictionary<String,String>? = nil,uid : String? = nil) -> (Bool,MikrotikConnectionError?,Sentence?){ // ISSUCCESS - ERROR - Sentence
+    func sendAPI(api : String , params : Dictionary<String,String>? = nil,apiType : ApiType = .GET,querys : Dictionary<String,String>? = nil,uid : String? = nil) -> (Bool,Error?,Sentence?){ // ISSUCCESS - ERROR - Sentence
         do {
             tcpSocket = try Socket.create()
             tcpSocket.readBufferSize = 4096
-            try tcpSocket.connect(to: self.hostName, port: Int32(self.hostPort))
+            try tcpSocket.connect(to: self.hostName, port: Int32(self.hostPort), timeout: 2000)
             /// SEND GET TOKEN
             var success : Bool = false
             success =  self.send(word: "/login", endsentence: true)
@@ -253,20 +267,16 @@ class MikrotikConnection{
                 return (false,MikrotikConnectionError.LOGIN,nil)
             }
             success = self.send(word: "=name=\(self.userName!)",endsentence: false)
-            guard success == true && sentence.SentenceData.count == 1 && sentence.SentenceData[0].count != 0 else {
+            guard success == true && sentence.SentenceData.count == 1 else {
                 tcpSocket.close()
                 return (false,MikrotikConnectionError.LOGIN,nil)
             }
             
-            let arr = sentence.SentenceData[0][0].components(separatedBy: "=")
-            guard arr.count == 3 else {
-                tcpSocket.close()
-                return (false,MikrotikConnectionError.LOGIN,nil)
-            }
+            
             
             var chal = self.hexStringToBytes("00")!
             chal = chal + password.data(using: String.Encoding.ascii)!.bytes
-            chal = chal + self.hexStringToBytes(arr[2])!
+            chal = chal + self.hexStringToBytes(sentence.SentenceData[0]["ret"]!)!
             chal = chal.md5()
             success = self.send(word: "=response=00\(chal.toHexString())",endsentence: true)
             guard success == true && sentence.SentenceData.count == 1 else {
@@ -463,15 +473,8 @@ class MikrotikConnection{
                 return (true,nil,sentenceData)
             }
             
-            return (false,MikrotikConnectionError.UNKNOW,nil)
-            
-            
-            
-            //_ = self.send(word: "?name=test", endsentence: true)
-            
-            
         } catch  {
-            return (false,MikrotikConnectionError.UNKNOW,nil)
+            return (false,error,nil)
         }
     }
     

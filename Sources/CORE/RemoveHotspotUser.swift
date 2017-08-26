@@ -14,7 +14,7 @@ public class RemoveHotspotUser: RemoveBaseOperation {
     public override func uidString() -> String? {
         return "*3"
     }
-    public override func onReply(isSuccess: Bool, error: MikrotikConnectionError?, response: Sentence?) {
+    public override func onReply(isSuccess: Bool, error: Error?, response: Sentence?) {
         if isSuccess {
             print("SUCCESS \(response?.returnType)")
         }else{

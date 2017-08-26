@@ -21,7 +21,8 @@ public class HttpServerComponent : BaseComponent{
         return .HttpServer
     }
     public override func loadConfig() {
-        Kitura.addHTTPServer(onPort: 8080, with: router)
+        
+        Kitura.addHTTPServer(onPort: Engine.sharedInstance.Session()?.http_port ?? 8080, with: router)
         
         let users = ["dungnt" : "12345","khanhnd":"12345"]
         let basicCredentials = CredentialsHTTPBasic(verifyPassword: { userId, password, callback in

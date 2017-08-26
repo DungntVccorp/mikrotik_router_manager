@@ -14,7 +14,7 @@ public class AddHotspotUser : AddBaseOperation{
     public override func params() -> Dictionary<String, String>? {
         return ["name":UUID().uuidString,"password":UUID().uuidString,"profile":"default"]
     }
-    public override func onReply(isSuccess: Bool, error: MikrotikConnectionError?, response: Sentence?) {
+    public override func onReply(isSuccess: Bool, error: Error?, response: Sentence?) {
         if isSuccess {
             print("SUCCESS \(response?.returnType)")
         }else{

@@ -39,6 +39,7 @@ public class HttpServerComponent : BaseComponent{
         router.all(middleware: BodyParser())
         self.routerAPI()
         self.hotspotAPI()
+        self.usermanManager()
     }
     public override func start() {
         Kitura.run()

@@ -12,7 +12,6 @@ extension HttpServerComponent{
     func hotspotAPI(){
         let api = "/api/hotspot/"
         router.get(api + ":id") { (routerRequest, routerResponse, next) in
-            
             if let parameter = routerRequest.parameters["id"]{
                 
                 
@@ -60,8 +59,6 @@ extension HttpServerComponent{
                 routerResponse.send(json: ["status":400,"message":"id invalid"])
                 next()
             }
-            
-            
         }
         
     }

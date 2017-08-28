@@ -86,7 +86,11 @@ public class BaseMikrotikApiOperation: BaseOperation {
     }
     
     public func onReply(isSuccess : Bool,error : Error?,response : Sentence?){
-        
+        if isSuccess {
+            self._onSuccess?(response?.SentenceData)
+        }else{
+            self._onFailure?(error)
+        }
     }
     
     public override func main() {

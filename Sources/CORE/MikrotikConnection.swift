@@ -29,6 +29,12 @@ public enum MikrotikConnectionError : Error{
     case UNKNOW
 }
 
+public enum ApiType {
+    case SET
+    case GET
+    case ADD
+    case DEL
+}
 
 public class Request{
     var api : String!

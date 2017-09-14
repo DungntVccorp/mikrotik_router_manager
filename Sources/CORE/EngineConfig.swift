@@ -12,17 +12,11 @@ extension Engine{ /// extension register
     func loadConfig(){
         registerComponent(component: SessionManager())
         registerComponent(component: LogComponent())
-        registerComponent(component: OperationManager())
         registerComponent(component: HttpServerComponent())
         registerComponent(component: MysqlConnection())
         
     }
-    public func operationManager() -> OperationManager?{
-        if let op = self.getComponent(type: ComponentType.Operation) as? OperationManager{
-            return op
-        }
-        return nil
-    }
+    
 }
 public extension Engine{ /// extension get component
     public func mySQLConnection() -> MysqlConnection?{

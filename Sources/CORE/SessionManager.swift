@@ -19,6 +19,12 @@ public class SessionManager : BaseComponent{
     var mysqlPassword : String = "123456"
     var mysqlDBName : String = "router_manager"
     var dataStorePath : String = "db.plist"
+    var public_server_radius_ip : String = "10.3.3.202"
+    var public_server_radius_username : String = "admin"
+    var public_server_radius_password : String = "123456"
+    var public_server_radius_port : Int = 8728
+    
+    
     
     var http_port : Int = 8080
     

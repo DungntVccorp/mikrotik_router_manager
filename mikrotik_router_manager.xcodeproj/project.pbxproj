@@ -297,31 +297,15 @@
 		OBJ_794 /* HeliumLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* HeliumLogger.swift */; };
 		OBJ_795 /* HeliumStreamLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* HeliumStreamLogger.swift */; };
 		OBJ_797 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_330 /* LoggerAPI.framework */; };
-		OBJ_804 /* AddBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AddBaseOperation.swift */; };
-		OBJ_805 /* AddHotspotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* AddHotspotUser.swift */; };
-		OBJ_806 /* AddUsermanUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AddUsermanUser.swift */; };
-		OBJ_807 /* AddUsermanUserActivateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* AddUsermanUserActivateProfile.swift */; };
 		OBJ_808 /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* BaseComponent.swift */; };
-		OBJ_809 /* BaseMikrotikApiOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* BaseMikrotikApiOperation.swift */; };
-		OBJ_810 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* BaseOperation.swift */; };
 		OBJ_811 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Engine.swift */; };
 		OBJ_812 /* EngineConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* EngineConfig.swift */; };
-		OBJ_813 /* GetBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* GetBaseOperation.swift */; };
-		OBJ_814 /* GetListHospot.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* GetListHospot.swift */; };
-		OBJ_815 /* GetListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* GetListInterface.swift */; };
-		OBJ_816 /* HttpHotspotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* HttpHotspotAPI.swift */; };
 		OBJ_818 /* HttpServerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* HttpServerComponent.swift */; };
-		OBJ_819 /* HttpUserManProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* HttpUserManProfile.swift */; };
 		OBJ_820 /* HtttpRouterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* HtttpRouterAPI.swift */; };
 		OBJ_821 /* LogComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* LogComponent.swift */; };
 		OBJ_822 /* MikrotikConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* MikrotikConnection.swift */; };
 		OBJ_823 /* MysqlConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* MysqlConnection.swift */; };
-		OBJ_824 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* OperationManager.swift */; };
-		OBJ_825 /* RemoveBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* RemoveBaseOperation.swift */; };
-		OBJ_826 /* RemoveHotspotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* RemoveHotspotUser.swift */; };
 		OBJ_827 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* SessionManager.swift */; };
-		OBJ_828 /* UpdateBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* UpdateBaseOperation.swift */; };
-		OBJ_829 /* UpdateHotspotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* UpdateHotspotUser.swift */; };
 		OBJ_831 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_330 /* LoggerAPI.framework */; };
 		OBJ_832 /* Configuration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_331 /* Configuration.framework */; };
 		OBJ_833 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_333 /* Socket.framework */; };
@@ -959,7 +943,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		OBJ_10 /* AddHotspotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHotspotUser.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RouterMiddlewareGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterMiddlewareGenerator.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RouterMiddlewareWalker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterMiddlewareWalker.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RouterParameterWalker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterParameterWalker.swift; sourceTree = "<group>"; };
@@ -969,7 +952,6 @@
 		OBJ_106 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		OBJ_107 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_108 /* TemplatingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatingError.swift; sourceTree = "<group>"; };
-		OBJ_11 /* AddUsermanUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsermanUser.swift; sourceTree = "<group>"; };
 		OBJ_110 /* BodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyParser.swift; sourceTree = "<group>"; };
 		OBJ_111 /* BodyParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyParserProtocol.swift; sourceTree = "<group>"; };
 		OBJ_112 /* JSONBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONBodyParser.swift; sourceTree = "<group>"; };
@@ -979,7 +961,6 @@
 		OBJ_116 /* RawBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawBodyParser.swift; sourceTree = "<group>"; };
 		OBJ_117 /* TextBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBodyParser.swift; sourceTree = "<group>"; };
 		OBJ_118 /* URLEncodedBodyParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncodedBodyParser.swift; sourceTree = "<group>"; };
-		OBJ_12 /* AddUsermanUserActivateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsermanUserActivateProfile.swift; sourceTree = "<group>"; };
 		OBJ_120 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		OBJ_121 /* types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = types.swift; sourceTree = "<group>"; };
 		OBJ_123 /* CacheRelatedHeadersSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheRelatedHeadersSetter.swift; sourceTree = "<group>"; };
@@ -995,7 +976,6 @@
 		OBJ_137 /* BufferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferList.swift; sourceTree = "<group>"; };
 		OBJ_138 /* ClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRequest.swift; sourceTree = "<group>"; };
 		OBJ_139 /* ClientResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientResponse.swift; sourceTree = "<group>"; };
-		OBJ_14 /* BaseMikrotikApiOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMikrotikApiOperation.swift; sourceTree = "<group>"; };
 		OBJ_140 /* ConnectionUpgradeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionUpgradeFactory.swift; sourceTree = "<group>"; };
 		OBJ_141 /* ConnectionUpgrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionUpgrader.swift; sourceTree = "<group>"; };
 		OBJ_142 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -1006,7 +986,6 @@
 		OBJ_147 /* IncomingSocketProcessorCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingSocketProcessorCreator.swift; sourceTree = "<group>"; };
 		OBJ_148 /* ListenerGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerGroup.swift; sourceTree = "<group>"; };
 		OBJ_149 /* ServerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
-		OBJ_15 /* BaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
 		OBJ_150 /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		OBJ_151 /* SPIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPIUtils.swift; sourceTree = "<group>"; };
 		OBJ_153 /* FastCGI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastCGI.swift; sourceTree = "<group>"; };
@@ -1033,14 +1012,12 @@
 		OBJ_175 /* ServerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerState.swift; sourceTree = "<group>"; };
 		OBJ_177 /* http_parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
 		OBJ_178 /* utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
-		OBJ_18 /* GetBaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBaseOperation.swift; sourceTree = "<group>"; };
 		OBJ_180 /* CHTTPParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHTTPParser.h; sourceTree = "<group>"; };
 		OBJ_181 /* http_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_parser.h; sourceTree = "<group>"; };
 		OBJ_182 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		OBJ_183 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = /Volumes/work/home/wifiConnect/mikrotik_router_manager/mikrotik_router_manager.xcodeproj/GeneratedModuleMap/CHTTPParser/module.modulemap; sourceTree = "<group>"; };
 		OBJ_185 /* SSLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSLService.swift; sourceTree = "<group>"; };
 		OBJ_189 /* MySQLConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLConnection.swift; sourceTree = "<group>"; };
-		OBJ_19 /* GetListHospot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListHospot.swift; sourceTree = "<group>"; };
 		OBJ_190 /* MySQLPreparedStatement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLPreparedStatement.swift; sourceTree = "<group>"; };
 		OBJ_191 /* MySQLResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLResultFetcher.swift; sourceTree = "<group>"; };
 		OBJ_192 /* MySQLThreadSafeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLThreadSafeConnection.swift; sourceTree = "<group>"; };
@@ -1049,7 +1026,6 @@
 		OBJ_197 /* Buildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
 		OBJ_198 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		OBJ_199 /* ColumnAndExpressions_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnAndExpressions_Extensions.swift; sourceTree = "<group>"; };
-		OBJ_20 /* GetListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListInterface.swift; sourceTree = "<group>"; };
 		OBJ_200 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		OBJ_201 /* ConditionalClause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalClause.swift; sourceTree = "<group>"; };
 		OBJ_202 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -1060,7 +1036,6 @@
 		OBJ_207 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		OBJ_208 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		OBJ_209 /* FilterAndHaving_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAndHaving_Extensions.swift; sourceTree = "<group>"; };
-		OBJ_21 /* HttpHotspotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHotspotAPI.swift; sourceTree = "<group>"; };
 		OBJ_210 /* FilterAndHaving_GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAndHaving_GlobalFunctions.swift; sourceTree = "<group>"; };
 		OBJ_211 /* Having.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Having.swift; sourceTree = "<group>"; };
 		OBJ_212 /* Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
@@ -1092,7 +1067,6 @@
 		OBJ_237 /* Subqueries_GlobalFunctionsAndExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subqueries_GlobalFunctionsAndExtensions.swift; sourceTree = "<group>"; };
 		OBJ_238 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		OBJ_239 /* Union.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Union.swift; sourceTree = "<group>"; };
-		OBJ_24 /* HttpUserManProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUserManProfile.swift; sourceTree = "<group>"; };
 		OBJ_240 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		OBJ_241 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		OBJ_242 /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
@@ -1143,7 +1117,6 @@
 		OBJ_287 /* BlockMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMode.swift; sourceTree = "<group>"; };
 		OBJ_288 /* BlockModeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModeOptions.swift; sourceTree = "<group>"; };
 		OBJ_289 /* BlockModeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModeWorker.swift; sourceTree = "<group>"; };
-		OBJ_29 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		OBJ_290 /* CBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBC.swift; sourceTree = "<group>"; };
 		OBJ_291 /* CFB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFB.swift; sourceTree = "<group>"; };
 		OBJ_292 /* CTR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTR.swift; sourceTree = "<group>"; };
@@ -1153,7 +1126,6 @@
 		OBJ_296 /* RandomAccessBlockModeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAccessBlockModeWorker.swift; sourceTree = "<group>"; };
 		OBJ_298 /* AES+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AES+Foundation.swift"; sourceTree = "<group>"; };
 		OBJ_299 /* Blowfish+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Blowfish+Foundation.swift"; sourceTree = "<group>"; };
-		OBJ_30 /* RemoveBaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBaseOperation.swift; sourceTree = "<group>"; };
 		OBJ_300 /* ChaCha20+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChaCha20+Foundation.swift"; sourceTree = "<group>"; };
 		OBJ_301 /* CSArrayType+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSArrayType+Foundation.swift"; sourceTree = "<group>"; };
 		OBJ_302 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
@@ -1163,7 +1135,6 @@
 		OBJ_306 /* Utils+Foundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils+Foundation.swift"; sourceTree = "<group>"; };
 		OBJ_308 /* PBKDF1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF1.swift; sourceTree = "<group>"; };
 		OBJ_309 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
-		OBJ_31 /* RemoveHotspotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHotspotUser.swift; sourceTree = "<group>"; };
 		OBJ_310 /* PKCS5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCS5.swift; sourceTree = "<group>"; };
 		OBJ_312 /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		OBJ_313 /* SocketProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketProtocols.swift; sourceTree = "<group>"; };
@@ -1177,7 +1148,6 @@
 		OBJ_323 /* PLISTDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLISTDeserializer.swift; sourceTree = "<group>"; };
 		OBJ_325 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_328 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		OBJ_33 /* UpdateBaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBaseOperation.swift; sourceTree = "<group>"; };
 		OBJ_330 /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_331 /* Configuration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Configuration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_332 /* ConfigurationTestExecutable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigurationTestExecutable; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1188,7 +1158,6 @@
 		OBJ_337 /* SSLService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSLService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_338 /* KituraNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KituraNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_339 /* CHTTPParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CHTTPParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_34 /* UpdateHotspotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateHotspotUser.swift; sourceTree = "<group>"; };
 		OBJ_340 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_341 /* KituraTemplateEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KituraTemplateEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_342 /* Kitura.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kitura.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1240,7 +1209,6 @@
 		OBJ_87 /* JSONPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPError.swift; sourceTree = "<group>"; };
 		OBJ_88 /* Kitura.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitura.swift; sourceTree = "<group>"; };
 		OBJ_89 /* LinkParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkParameter.swift; sourceTree = "<group>"; };
-		OBJ_9 /* AddBaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBaseOperation.swift; sourceTree = "<group>"; };
 		OBJ_90 /* MimeTypeAcceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeTypeAcceptor.swift; sourceTree = "<group>"; };
 		OBJ_91 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		OBJ_92 /* RouteRegex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRegex.swift; sourceTree = "<group>"; };
@@ -2136,31 +2104,15 @@
 		OBJ_8 /* CORE */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* AddBaseOperation.swift */,
-				OBJ_10 /* AddHotspotUser.swift */,
-				OBJ_11 /* AddUsermanUser.swift */,
-				OBJ_12 /* AddUsermanUserActivateProfile.swift */,
 				OBJ_13 /* BaseComponent.swift */,
-				OBJ_14 /* BaseMikrotikApiOperation.swift */,
-				OBJ_15 /* BaseOperation.swift */,
 				OBJ_16 /* Engine.swift */,
 				OBJ_17 /* EngineConfig.swift */,
-				OBJ_18 /* GetBaseOperation.swift */,
-				OBJ_19 /* GetListHospot.swift */,
-				OBJ_20 /* GetListInterface.swift */,
-				OBJ_21 /* HttpHotspotAPI.swift */,
 				OBJ_23 /* HttpServerComponent.swift */,
-				OBJ_24 /* HttpUserManProfile.swift */,
 				OBJ_25 /* HtttpRouterAPI.swift */,
 				OBJ_26 /* LogComponent.swift */,
 				OBJ_27 /* MikrotikConnection.swift */,
 				OBJ_28 /* MysqlConnection.swift */,
-				OBJ_29 /* OperationManager.swift */,
-				OBJ_30 /* RemoveBaseOperation.swift */,
-				OBJ_31 /* RemoveHotspotUser.swift */,
 				OBJ_32 /* SessionManager.swift */,
-				OBJ_33 /* UpdateBaseOperation.swift */,
-				OBJ_34 /* UpdateHotspotUser.swift */,
 			);
 			name = CORE;
 			path = Sources/CORE;
@@ -3048,31 +3000,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_804 /* AddBaseOperation.swift in Sources */,
-				OBJ_805 /* AddHotspotUser.swift in Sources */,
-				OBJ_806 /* AddUsermanUser.swift in Sources */,
-				OBJ_807 /* AddUsermanUserActivateProfile.swift in Sources */,
 				OBJ_808 /* BaseComponent.swift in Sources */,
-				OBJ_809 /* BaseMikrotikApiOperation.swift in Sources */,
-				OBJ_810 /* BaseOperation.swift in Sources */,
 				OBJ_811 /* Engine.swift in Sources */,
 				OBJ_812 /* EngineConfig.swift in Sources */,
-				OBJ_813 /* GetBaseOperation.swift in Sources */,
-				OBJ_814 /* GetListHospot.swift in Sources */,
-				OBJ_815 /* GetListInterface.swift in Sources */,
-				OBJ_816 /* HttpHotspotAPI.swift in Sources */,
 				OBJ_818 /* HttpServerComponent.swift in Sources */,
-				OBJ_819 /* HttpUserManProfile.swift in Sources */,
 				OBJ_820 /* HtttpRouterAPI.swift in Sources */,
 				OBJ_821 /* LogComponent.swift in Sources */,
 				OBJ_822 /* MikrotikConnection.swift in Sources */,
 				OBJ_823 /* MysqlConnection.swift in Sources */,
-				OBJ_824 /* OperationManager.swift in Sources */,
-				OBJ_825 /* RemoveBaseOperation.swift in Sources */,
-				OBJ_826 /* RemoveHotspotUser.swift in Sources */,
 				OBJ_827 /* SessionManager.swift in Sources */,
-				OBJ_828 /* UpdateBaseOperation.swift in Sources */,
-				OBJ_829 /* UpdateHotspotUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

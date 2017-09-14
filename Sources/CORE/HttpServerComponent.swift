@@ -38,8 +38,12 @@ public class HttpServerComponent : BaseComponent{
         router.all("/api", middleware: credentials)
         router.all(middleware: BodyParser())
         self.routerAPI()
-        self.hotspotAPI()
-        self.usermanManager()
+        
+        
+        router.get("/ping") { (routerRequest, routerResponse, next) in
+            routerResponse.send("ok")
+            next()
+        }
         
     }
     public override func start() {

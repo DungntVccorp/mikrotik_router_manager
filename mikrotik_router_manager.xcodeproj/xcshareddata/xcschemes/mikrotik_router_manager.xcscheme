@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_347"
+               BlueprintIdentifier = "OBJ_350"
                BuildableName = "LoggerAPI.framework"
                BlueprintName = "LoggerAPI"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_354"
+               BlueprintIdentifier = "OBJ_357"
                BuildableName = "Configuration.framework"
                BlueprintName = "Configuration"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_368"
+               BlueprintIdentifier = "OBJ_371"
                BuildableName = "ConfigurationTestExecutable"
                BlueprintName = "ConfigurationTestExecutable"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_379"
+               BlueprintIdentifier = "OBJ_382"
                BuildableName = "Socket.framework"
                BlueprintName = "Socket"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_388"
+               BlueprintIdentifier = "OBJ_391"
                BuildableName = "CryptoSwift.framework"
                BlueprintName = "CryptoSwift"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_456"
+               BlueprintIdentifier = "OBJ_459"
                BuildableName = "SwiftKuery.framework"
                BlueprintName = "SwiftKuery"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_510"
+               BlueprintIdentifier = "OBJ_513"
                BuildableName = "SwiftKueryMySQL.framework"
                BlueprintName = "SwiftKueryMySQL"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_522"
+               BlueprintIdentifier = "OBJ_525"
                BuildableName = "SSLService.framework"
                BlueprintName = "SSLService"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -126,7 +126,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_531"
+               BlueprintIdentifier = "OBJ_534"
                BuildableName = "KituraNet.framework"
                BlueprintName = "KituraNet"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -140,7 +140,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_580"
+               BlueprintIdentifier = "OBJ_583"
                BuildableName = "CHTTPParser.framework"
                BlueprintName = "CHTTPParser"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -154,7 +154,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_595"
+               BlueprintIdentifier = "OBJ_598"
                BuildableName = "SwiftyJSON.framework"
                BlueprintName = "SwiftyJSON"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -168,7 +168,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_603"
+               BlueprintIdentifier = "OBJ_606"
                BuildableName = "KituraTemplateEngine.framework"
                BlueprintName = "KituraTemplateEngine"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -182,7 +182,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_610"
+               BlueprintIdentifier = "OBJ_613"
                BuildableName = "Kitura.framework"
                BlueprintName = "Kitura"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -196,7 +196,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_674"
+               BlueprintIdentifier = "OBJ_677"
                BuildableName = "Cryptor.framework"
                BlueprintName = "Cryptor"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -210,7 +210,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_690"
+               BlueprintIdentifier = "OBJ_693"
                BuildableName = "KituraSession.framework"
                BlueprintName = "KituraSession"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -224,7 +224,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_722"
+               BlueprintIdentifier = "OBJ_725"
                BuildableName = "Credentials.framework"
                BlueprintName = "Credentials"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -238,7 +238,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_754"
+               BlueprintIdentifier = "OBJ_757"
                BuildableName = "CredentialsHTTP.framework"
                BlueprintName = "CredentialsHTTP"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -252,7 +252,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_786"
+               BlueprintIdentifier = "OBJ_789"
                BuildableName = "HeliumLogger.framework"
                BlueprintName = "HeliumLogger"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -266,7 +266,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_796"
+               BlueprintIdentifier = "OBJ_799"
                BuildableName = "CORE.framework"
                BlueprintName = "CORE"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -280,7 +280,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_859"
+               BlueprintIdentifier = "OBJ_865"
                BuildableName = "SERVER"
                BlueprintName = "SERVER"
                ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">
@@ -311,7 +311,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_347"
+            BlueprintIdentifier = "OBJ_350"
             BuildableName = "LoggerAPI.framework"
             BlueprintName = "LoggerAPI"
             ReferencedContainer = "container:mikrotik_router_manager.xcodeproj">

@@ -22,7 +22,7 @@ public class HttpServerComponent : BaseComponent{
     }
     public override func loadConfig() {
         
-        Kitura.addHTTPServer(onPort: Engine.sharedInstance.Session()?.http_port ?? 8080, with: router)
+        Kitura.addHTTPServer(onPort: Engine.sharedInstance.getSession()?.http_port ?? 8080, with: router)
         
         let users = ["dungnt" : "12345","khanhnd":"12345"]
         let basicCredentials = CredentialsHTTPBasic(verifyPassword: { userId, password, callback in
@@ -35,11 +35,12 @@ public class HttpServerComponent : BaseComponent{
         
         credentials.register(plugin: basicCredentials)
         
-        router.all("/", middleware: credentials)
+        router.all("/api", middleware: credentials)
         router.all(middleware: BodyParser())
         self.routerAPI()
         self.hotspotAPI()
         self.usermanManager()
+        
     }
     public override func start() {
         Kitura.run()

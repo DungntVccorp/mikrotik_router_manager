@@ -16,7 +16,7 @@ extension HttpServerComponent{
         let api = "/api/router"
         router.get(api) { (routerRequest, routerResponse, next) in
             do{
-                try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router", onCompletion: { (results) in
+                try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router ORDER BY id desc", onCompletion: { (results) in
                     if(results.success){
                         routerResponse.send(json: ["status":200,"data":results.asRows!])
                     }else{
@@ -69,6 +69,7 @@ extension HttpServerComponent{
                 var ip_adddress : String?
                 var name : String?
                 var des : String?
+                var port : Int = 8278
                 for p in (routerRequest.body?.asMultiPart ?? []){
                     if(p.name == "name"){
                         name = p.body.asText
@@ -80,6 +81,8 @@ extension HttpServerComponent{
                         password = p.body.asText
                     }else if p.name == "description" {
                         des = p.body.asText
+                    }else if p.name == "port" {
+                        port = Int(p.body.asText ?? "8278")!
                     }
                 }
                 
@@ -90,7 +93,17 @@ extension HttpServerComponent{
                 }
                 
                 
-                try Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")')", onCompletion: { (results) in
+                /// b1 connect to router test connect ok
+                    ///b1.1 add radius server ( local va host )
+                    ///b1.2 add limit + profile cho userman
+                    ///b1.3 add router cho userman
+                
+                /// b2 gi vao` sql
+                
+                /// b3 tra lai thong tin
+                
+                
+                try Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`,`port`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")', \(port))", onCompletion: { (results) in
                     if(results.success){
                         routerResponse.send(json: ["status":200,"message":"\(results.asValue ?? "")"])
                         
@@ -100,7 +113,7 @@ extension HttpServerComponent{
                     }
                 })
                 
-                next()
+                //next()
             }catch{
                 routerResponse.send(json: ["status":500,"message":"\(error.localizedDescription)"])
                 next()

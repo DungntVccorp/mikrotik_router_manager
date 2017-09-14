@@ -15,6 +15,7 @@ extension Engine{ /// extension register
         registerComponent(component: OperationManager())
         registerComponent(component: HttpServerComponent())
         registerComponent(component: MysqlConnection())
+        
     }
     public func operationManager() -> OperationManager?{
         if let op = self.getComponent(type: ComponentType.Operation) as? OperationManager{
@@ -30,7 +31,7 @@ public extension Engine{ /// extension get component
         }
         return nil
     }
-    public func Session() -> SessionManager?{
+    public func getSession() -> SessionManager?{
         if let op = self.getComponent(type: ComponentType.Session) as? SessionManager{
             return op
         }

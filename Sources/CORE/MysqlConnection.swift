@@ -15,7 +15,7 @@ public class MysqlConnection : BaseComponent{
       return ComponentType.DataBase
     }
     public override func start(){
-        mysqlConnection = MySQLConnection(host: Engine.sharedInstance.Session()?.mysqlHostName ?? "", user: Engine.sharedInstance.Session()?.mysqlUserName ?? "", password: Engine.sharedInstance.Session()?.mysqlPassword ?? "", database: Engine.sharedInstance.Session()?.mysqlDBName ?? "", port: 3306, unixSocket: nil, clientFlag: 0, characterSet: nil, reconnect: true)
+        mysqlConnection = MySQLConnection(host: Engine.sharedInstance.getSession()?.mysqlHostName ?? "", user: Engine.sharedInstance.getSession()?.mysqlUserName ?? "", password: Engine.sharedInstance.getSession()?.mysqlPassword ?? "", database: Engine.sharedInstance.getSession()?.mysqlDBName ?? "", port: 3306, unixSocket: nil, clientFlag: 0, characterSet: nil, reconnect: true)
         mysqlConnection.connect { error in
             Log.info("MYSQL CONNECTED")
             if error != nil {
@@ -25,10 +25,6 @@ public class MysqlConnection : BaseComponent{
         }
     }
     public override func loadConfig(){
-        
-        
-        
-        
         
     }
     

@@ -16,6 +16,7 @@ public enum ComponentType {
     case Operation
     case Logging
     case Session
+    case DataStoreFile
 }
 public class BaseComponent {
     

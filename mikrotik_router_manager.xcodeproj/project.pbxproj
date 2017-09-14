@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		990451FC1F692AB200BEF129 /* HttpListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990451FB1F692AB200BEF129 /* HttpListRouter.swift */; };
 		99ECA7E71F53BDA700702DB4 /* HttpUserManProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ECA7E61F53BDA700702DB4 /* HttpUserManProfile.swift */; };
 		99ECA7E91F54178D00702DB4 /* AddUsermanUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ECA7E81F54178D00702DB4 /* AddUsermanUser.swift */; };
 		99ECA7EB1F541A8B00702DB4 /* AddUsermanUserActivateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ECA7EA1F541A8B00702DB4 /* AddUsermanUserActivateProfile.swift */; };
@@ -959,6 +960,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		990451FA1F691F3D00BEF129 /* profile_config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = profile_config.plist; sourceTree = "<group>"; };
+		990451FB1F692AB200BEF129 /* HttpListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpListRouter.swift; sourceTree = "<group>"; };
 		99ECA7E61F53BDA700702DB4 /* HttpUserManProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUserManProfile.swift; sourceTree = "<group>"; };
 		99ECA7E81F54178D00702DB4 /* AddUsermanUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUsermanUser.swift; sourceTree = "<group>"; };
 		99ECA7EA1F541A8B00702DB4 /* AddUsermanUserActivateProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUsermanUserActivateProfile.swift; sourceTree = "<group>"; };
@@ -2061,7 +2064,7 @@
 			path = ".build/checkouts/Kitura-Credentials.git-1137106172743287290/Sources/Credentials";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -2071,7 +2074,6 @@
 				OBJ_36 /* Dependencies */,
 				OBJ_326 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_55 /* Kitura-Session 1.7.0 */ = {
@@ -2207,6 +2209,8 @@
 				99ECA7E61F53BDA700702DB4 /* HttpUserManProfile.swift */,
 				99ECA7E81F54178D00702DB4 /* AddUsermanUser.swift */,
 				99ECA7EA1F541A8B00702DB4 /* AddUsermanUserActivateProfile.swift */,
+				990451FA1F691F3D00BEF129 /* profile_config.plist */,
+				990451FB1F692AB200BEF129 /* HttpListRouter.swift */,
 			);
 			name = CORE;
 			path = Sources/CORE;
@@ -2636,7 +2640,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_326 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3056,6 +3060,7 @@
 				OBJ_806 /* Engine.swift in Sources */,
 				OBJ_807 /* EngineConfig.swift in Sources */,
 				OBJ_808 /* GetBaseOperation.swift in Sources */,
+				990451FC1F692AB200BEF129 /* HttpListRouter.swift in Sources */,
 				99ECA7E71F53BDA700702DB4 /* HttpUserManProfile.swift in Sources */,
 				OBJ_809 /* GetListHospot.swift in Sources */,
 				OBJ_810 /* GetListInterface.swift in Sources */,

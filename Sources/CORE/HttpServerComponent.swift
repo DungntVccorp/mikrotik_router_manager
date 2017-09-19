@@ -10,7 +10,7 @@ import Foundation
 import Kitura
 import Credentials
 import CredentialsHTTP
-
+import KituraCORS
 public class HttpServerComponent : BaseComponent{
     
     let router = Router()
@@ -38,9 +38,12 @@ public class HttpServerComponent : BaseComponent{
         router.all("/api", middleware: credentials)
         router.all(middleware: BodyParser())
         self.routerAPI()
-        
-        
-        router.get("/ping") { (routerRequest, routerResponse, next) in
+        self.userAPI()
+//        srouter.all("/ping", middleware: credentials)
+        router.post("/ping") { (routerRequest, routerResponse, next) in
+            routerResponse.headers["Access-Control-Allow-Origin"] = "*"
+            //routerResponse.headers["Access-Control-Allow-Headers"] = "Accept"
+            
             routerResponse.send("ok")
             next()
         }

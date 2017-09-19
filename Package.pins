@@ -80,6 +80,12 @@
       "version": "1.7.15"
     },
     {
+      "package": "KituraCORS",
+      "reason": null,
+      "repositoryURL": "https://github.com/IBM-Swift/Kitura-CORS.git",
+      "version": "1.7.0"
+    },
+    {
       "package": "LoggerAPI",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/LoggerAPI.git",

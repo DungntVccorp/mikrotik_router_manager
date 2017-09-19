@@ -13,5 +13,6 @@ let package = Package(
         .Package(url: "https://github.com/IBM-Swift/SwiftKueryMySQL.git",Version(0,13,1)),
         .Package(url: "https://github.com/IBM-Swift/Kitura-CredentialsHTTP.git",Version(1,8,0)),
         .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git",Version(1,7,0)),
+        .Package(url: "https://github.com/IBM-Swift/Kitura-CORS.git", Version(1,7,0)),
         ]
 )

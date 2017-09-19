@@ -28,31 +28,29 @@ public class SessionManager : BaseComponent{
     
     var http_port : Int = 8080
     
-    var profiles : Array<Dictionary<String,Any>> = [
-        ["id":1,"name":"free_15p_2md_1mu","md":2,"mu":1,"time":15],
-        ["id":2,"name":"free_15p_2md_2mu","md":2,"mu":2,"time":15],
-        ["id":3,"name":"free_15p_3md_1mu","md":3,"mu":1,"time":15],
-        ["id":4,"name":"free_15p_3md_2mu","md":3,"mu":2,"time":15],
-        ["id":5,"name":"free_15p_5md_2mu","md":5,"mu":2,"time":15],
-        ["id":6,"name":"free_15p_5md_3mu","md":5,"mu":3,"time":15],
-        ["id":7,"name":"free_30p_2md_1mu","md":2,"mu":1,"time":30],
-        ["id":8,"name":"free_30p_2md_2mu","md":2,"mu":2,"time":30],
-        ["id":9,"name":"free_30p_3md_1mu","md":3,"mu":1,"time":30],
-        ["id":10,"name":"free_30p_3md_2mu","md":3,"mu":2,"time":30],
-        ["id":11,"name":"free_30p_5md_2mu","md":5,"mu":2,"time":30],
-        ["id":12,"name":"free_30p_5md_3mu","md":5,"mu":3,"time":30],
-        ["id":13,"name":"free_45p_2md_1mu","md":2,"mu":1,"time":45],
-        ["id":14,"name":"free_45p_2md_2mu","md":2,"mu":2,"time":45],
-        ["id":15,"name":"free_45p_3md_1mu","md":3,"mu":1,"time":45],
-        ["id":16,"name":"free_45p_3md_2mu","md":3,"mu":2,"time":45],
-        ["id":17,"name":"free_45p_5md_2mu","md":5,"mu":2,"time":45],
-        ["id":18,"name":"free_45p_5md_3mu","md":5,"mu":3,"time":45],
-        ["id":19,"name":"free_60p_2md_1mu","md":2,"mu":1,"time":60],
-        ["id":20,"name":"free_60p_2md_2mu","md":2,"mu":2,"time":60],
-        ["id":21,"name":"free_60p_3md_1mu","md":3,"mu":1,"time":60],
-        ["id":22,"name":"free_60p_3md_2mu","md":3,"mu":2,"time":60],
-        ["id":23,"name":"free_60p_5md_2mu","md":5,"mu":2,"time":60],
-        ["id":24,"name":"free_60p_5md_3mu","md":5,"mu":3,"time":60]
+    var profiles : Dictionary<String,Dictionary<String,Any>> = [
+        "0":["id":0,"name":"free_test_1p_2md_2mu","md":2048,"mu":2048,"time":1],
+        
+        "1":["id":1,"name":"free_15p_2md_512kmu","md":2048,"mu":512,"time":15],
+        "3":["id":3,"name":"free_15p_3md_640kmu","md":3072,"mu":640,"time":15],
+        "5":["id":5,"name":"free_15p_5md_1mu","md":5 * 1024,"mu":1024,"time":15],
+        
+        "7":["id":7,"name":"free_30p_2md_512kmu","md":2048,"mu":512,"time":30],
+        "9":["id":9,"name":"free_30p_3md_640kmu","md":3072,"mu":640,"time":30],
+        "11":["id":11,"name":"free_30p_5md_1mu","md":5 * 1024,"mu":1024,"time":30],
+        
+        "13":["id":13,"name":"free_45p_2md_512kmu","md":2048,"mu":512,"time":45],
+        "15":["id":15,"name":"free_45p_3md_640kmu","md":3072,"mu":640,"time":45],
+        "17":["id":17,"name":"free_45p_5md_1mu","md":5 * 1024,"mu":1024,"time":45],
+        
+        "19":["id":19,"name":"free_60p_2md_512kmu","md":2048,"mu":512,"time":60],  // 1h
+        "21":["id":21,"name":"free_60p_3md_640kmu","md":3072,"mu":640,"time":60],
+        "23":["id":23,"name":"free_60p_5md_1mu","md":5 * 1024,"mu":1024,"time":60],
+        
+        "25":["id":25,"name":"package_1d_5md_1mu","md":5 * 1024,"mu":1024,"time":1440], // 1 day
+        "27":["id":27,"name":"package_1d_9md_1.3mu","md":9 * 1024,"mu":1331,"time":1440],
+        "29":["id":29,"name":"package_1d_15md_2.2mu","md":15 * 1024,"mu":2191,"time":1440],
+        "30":["id":30,"name":"package_1d_20md_2.8mu","md":20 * 1024,"mu":2918,"time":1440]
     ]
     
     public let manager = ConfigurationManager()

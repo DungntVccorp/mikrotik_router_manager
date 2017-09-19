@@ -41,6 +41,7 @@ public class Request{
     var params : Dictionary<String,String>?
     var apiType : ApiType? = .GET
     var querys : Dictionary<String,String>?
+
     var uid : String?
     init(api : String,type : ApiType? = .GET,p : Dictionary<String,String>? = nil,q : Dictionary<String,String>? = nil,u : String? = nil ) {
         self.api = api

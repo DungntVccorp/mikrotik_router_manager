@@ -12,16 +12,15 @@ extension HttpServerComponent{
     func userAPI(){
         let api = "/user"
 
-        router.all  (api) { (routerRequest, routerResponse, next) in
+        router.post  (api) { (routerRequest, routerResponse, next) in
             routerResponse.headers["Access-Control-Allow-Origin"] = "*"
             routerResponse.headers["Content-type"] = "application/json"
-            // profile id // ["id":1,"name":"free_15p_2md_1mu","md":2,"mu":1,"time":15],
-            // router id  // 8
-            // mac address // 
+
             var profile_id : String?
             var router_id : String?
             var mac_address : String?
             var profileName : String!
+            var connect_time : Int = 0
             for p in (routerRequest.body?.asURLEncoded ?? [:]){
                 if(p.key == "profile_id"){
                     profile_id = p.value
@@ -40,7 +39,10 @@ extension HttpServerComponent{
             if let p_name = Engine.sharedInstance.getSession()?.profiles[profile_id ?? ""]?["name"] as? String{
                 profileName = p_name
             }
-            if(profileName == nil){
+            if let _time = Engine.sharedInstance.getSession()?.profiles[profile_id ?? ""]?["time"] as? Int{
+                connect_time = Int(_time)
+            }
+            if(profileName == nil || connect_time == 0){
                 routerResponse.send(json: ["status":400,"message":"Không tìm thấy thông tin profile"])
                 next()
                 return
@@ -51,18 +53,28 @@ extension HttpServerComponent{
                     if(results.success && arr?.count == 1){
                         
                         if let data = arr?[0]{
-                            if let server_ip = data["ip_address"] as? String, let username = data["username"] as? String , let pwd : String = data["password"] as? String,let port : Int32 = data["port"] as? Int32{
+                            if let server_ip = data["ip_address"] as? String, let username = data["username"] as? String , let pwd : String = data["password"] as? String,let port : Int32 = data["port"] as? Int32,let use_userman = data["use_userman"] as? Int32 {
                                 let mk = MikrotikConnection(host: server_ip, port: Int(port), userName: username, password: pwd)
                                 
                                 let random_username = UUID().uuidString
                                 let random_password = UUID().uuidString
+                                if(use_userman == 1){
+                                    /// USERMAN USER
+                                    let req_create_user = Request(api: "/tool/user-manager/user/add", type: ApiType.ADD, p: ["username":random_username,"password":random_password,"customer":"admin","disabled":"no","shared-users":"1","caller-id":mac_address!], q: nil, u: nil)
+                                    let add_profile_to_user = Request.init(api: "/tool/user-manager/user/create-and-activate-profile", type: ApiType.ADD, p: ["profile":profileName,"customer":"admin","numbers":random_username], q: nil, u: nil)
+                                    
+                                    _ = mk.sendAPIs(requests: [req_create_user,add_profile_to_user])
+                                    
+                                    routerResponse.send(json: ["status":200,"message":"ok","data":["username":random_username,"password":random_password]])
+                                }else{
+                                    /// HOTSPOT USER
+                                    //ip hotspot user add name=abc password=abc profile=free_15p_2md_512 limit-uptime=15m
+                                    let rq_add = Request(api: "/ip/hotspot/user/add", type: ApiType.ADD, p: ["name":random_username,"password":random_password,"profile":profileName,"limit-uptime":"\(connect_time)m"], q: nil, u: nil)
+                                    _ = mk.sendAPIs(requests: [rq_add])
+                                    
+                                    routerResponse.send(json: ["status":200,"message":"ok","data":["username":random_username,"password":random_password]])
+                                }
                                 
-                                let req_create_user = Request(api: "/tool/user-manager/user/add", type: ApiType.ADD, p: ["username":random_username,"password":random_password,"customer":"admin","disabled":"no","shared-users":"1","caller-id":mac_address!], q: nil, u: nil)
-                                let add_profile_to_user = Request.init(api: "/tool/user-manager/user/create-and-activate-profile", type: ApiType.ADD, p: ["profile":profileName,"customer":"admin","numbers":random_username], q: nil, u: nil)
-                                
-                                _ = mk.sendAPIs(requests: [req_create_user,add_profile_to_user])
-                                
-                                routerResponse.send(json: ["status":200,"message":"ok","data":["username":random_username,"password":random_password]])
                                 
                             }else{
                                 routerResponse.send(json: ["status":400,"message":"\(results.asError?.localizedDescription ?? "Lỗi lấy thông tin router")"])

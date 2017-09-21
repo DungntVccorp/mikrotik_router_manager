@@ -46,7 +46,7 @@ extension HttpServerComponent{
                 return
             }
             do{
-                try Engine.sharedInstance.mySQLConnection()!.execute("SELECT * FROM `tbl_router` WHERE id = \(router_id ?? "-1")", onCompletion: { (results) in
+                try Engine.sharedInstance.mySQLConnection()!.execute("SELECT * FROM `tbl_router` WHERE id = \(router_id!)", onCompletion: { (results) in
                     var arr = results.asRows
                     if(results.success && arr?.count == 1){
                         

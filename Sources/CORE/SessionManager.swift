@@ -23,7 +23,7 @@ public class SessionManager : BaseComponent{
     var public_server_radius_username : String = "admin"
     var public_server_radius_password : String = "123456"
     var public_server_radius_port : Int = 8728
-    
+    var hotspot_server_ip_address :String =  "10.3.3.30"
     
     
     var http_port : Int = 8080
@@ -47,10 +47,23 @@ public class SessionManager : BaseComponent{
         "21":["id":21,"name":"free_60p_3md_640kmu","md":3072,"mu":640,"time":60],
         "23":["id":23,"name":"free_60p_5md_1mu","md":5 * 1024,"mu":1024,"time":60],
         
-        "25":["id":25,"name":"package_1d_5md_1mu","md":5 * 1024,"mu":1024,"time":1440], // 1 day
-        "27":["id":27,"name":"package_1d_9md_1.3mu","md":9 * 1024,"mu":1331,"time":1440],
-        "29":["id":29,"name":"package_1d_15md_2.2mu","md":15 * 1024,"mu":2191,"time":1440],
-        "30":["id":30,"name":"package_1d_20md_2.8mu","md":20 * 1024,"mu":2918,"time":1440]
+        "24":["id":24,"name":"package_1d_5md_1mu","md":3 * 1024,"mu":512,"time":1440],// 1 day
+        "25":["id":25,"name":"package_1d_5md_1mu","md":5 * 1024,"mu":1024,"time":1440],
+        "27":["id":27,"name":"package_1d_9md_1.3mu","md":9 * 1024,"mu":2048,"time":1440],
+        "29":["id":29,"name":"package_1d_15md_2.2mu","md":15 * 1024,"mu":4096,"time":1440],
+        "30":["id":30,"name":"package_1d_20md_2.8mu","md":20 * 1024,"mu":10240,"time":1440],
+        
+        "31":["id":31,"name":"package_1w_5md_1mu","md":3 * 1024,"mu":512,"time":1440 * 7],// 7 day
+        "32":["id":32,"name":"package_1w_5md_1mu","md":5 * 1024,"mu":1024,"time":1440 * 7],
+        "33":["id":33,"name":"package_1w_9md_1.3mu","md":9 * 1024,"mu":2048,"time":1440 * 7],
+        "34":["id":34,"name":"package_1w_15md_2.2mu","md":15 * 1024,"mu":4096,"time":1440 * 7],
+        "35":["id":35,"name":"package_1w_20md_2.8mu","md":20 * 1024,"mu":10240,"time":1440 * 7],
+        
+        "36":["id":36,"name":"package_1m_5md_1mu","md":3 * 1024,"mu":512,"time":1440 * 30],// 30 day
+        "37":["id":37,"name":"package_1m_5md_1mu","md":5 * 1024,"mu":1024,"time":1440 * 30],
+        "38":["id":38,"name":"package_1m_9md_1.3mu","md":9 * 1024,"mu":2048,"time":1440 * 30],
+        "39":["id":39,"name":"package_1m_15md_2.2mu","md":15 * 1024,"mu":4096,"time":1440 * 30],
+        "40":["id":40,"name":"package_1m_20md_2.8mu","md":20 * 1024,"mu":10240,"time":1440 * 30]
     ]
     
     public let manager = ConfigurationManager()

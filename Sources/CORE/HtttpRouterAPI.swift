@@ -242,7 +242,7 @@ extension HttpServerComponent{
                                 let hotspot_profile_name = "hotspot-profile_\(s)"
                                 let rq_add_dns = Request(api: "/ip/dns/set", type: ApiType.SET, p: ["servers":"8.8.8.8","allow-remote-requests":"yes"], q: nil, u: nil)
                                 
-                                let rq_cr_ip_add = Request(api: "/ip/address/add", type: ApiType.ADD, p: ["address":"10.3.\(s).1/23","interface":"ether2"], q: nil, u: nil)
+                                let rq_cr_ip_add = Request(api: "/ip/address/add", type: ApiType.ADD, p: ["address":"10.3.\(s).1/23","interface":"ether2","comment":"hotspotip"], q: nil, u: nil)
                                 
                                 
                                 var rq_cr_pool : Request = Request(api: "")

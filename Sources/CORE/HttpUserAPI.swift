@@ -70,7 +70,7 @@ extension HttpServerComponent{
                                     /// HOTSPOT USER
                                     //ip hotspot user add name=abc password=abc profile=free_15p_2md_512 limit-uptime=15m
                                     let rq_add = Request(api: "/ip/hotspot/user/add", type: ApiType.ADD, p: ["name":random_username,"password":random_password,"profile":profileName,"limit-uptime":"\(connect_time)m"], q: nil, u: nil)
-                                    _ = mk.sendAPIs(requests: [rq_add])
+                                    let r = mk.sendAPIs(requests: [rq_add])
                                     
                                     routerResponse.send(json: ["status":200,"message":"ok","data":["username":random_username,"password":random_password]])
                                 }
@@ -87,10 +87,6 @@ extension HttpServerComponent{
                     }else{
                         routerResponse.send(json: ["status":400,"message":"\(results.asError?.localizedDescription ?? "Lỗi truy vấn SQL")"])
                     }
-                    
-                    
-                    
-                    
                     next()
                 })
                 

@@ -40,12 +40,47 @@ public class HttpServerComponent : BaseComponent{
         self.routerAPI()
         self.userAPI()
 //        srouter.all("/ping", middleware: credentials)
-        router.post("/ping") { (routerRequest, routerResponse, next) in
+        router.all("/ping") { (routerRequest, routerResponse, next) in
             routerResponse.headers["Access-Control-Allow-Origin"] = "*"
-            //routerResponse.headers["Access-Control-Allow-Headers"] = "Accept"
+            try? Engine.sharedInstance.mySQLConnection()?.execute("SELECT * from tbl_router where ip_address='\(routerRequest.remoteAddress)'", onCompletion: { (results) in
+                var arr = results.asRows
+                if(results.success && arr?.count == 1){
+                    
+                    if let data = arr?[0]{
+                        if let server_ip = data["ip_address"] as? String, let username = data["username"] as? String , let pwd : String = data["password"] as? String,let port : Int32 = data["port"] as? Int32 {
+                            let mk = MikrotikConnection(host: server_ip, port: Int(port), userName: username, password: pwd)
+                            let rs_ip = Request(api: "/ip/address/print", type: ApiType.GET, p: nil, q: ["comment":"hotspotip"], u: nil)
+                            let r =  mk.sendAPI2(r: rs_ip)
+                            if(r.0 == true && r.2?.SentenceData.count == 1){
+                                if let address = r.2?.SentenceData[0]["address"]{
+                                    if let ip = address.components(separatedBy: "/").first{
+                                        routerResponse.send(json: ["status":200,"message":"ok","data":["ip":"http://\(ip)"]])
+                                    }else{
+                                        routerResponse.send(json: ["status":400,"message":"ok","data":["ip":""]])
+                                    }
+                                }else{
+                                    routerResponse.send(json: ["status":400,"message":"không tồn tại remove trên database"])
+                                }
+                                
+                            }else{
+                               routerResponse.send(json: ["status":400,"message":"không tồn tại remove trên database"])
+                            }
+                        }else{
+                            routerResponse.send(json: ["status":400,"message":"không tồn tại remove trên database"])
+                        }
+                    }else{
+                        routerResponse.send(json: ["status":400,"message":"không tồn tại remove trên database"])
+                    }
+                }else{
+                    routerResponse.send(json: ["status":400,"message":"không tồn tại remove trên database"])
+                }
+                
+                
+                next()
+            })
             
-            routerResponse.send("ok")
-            next()
+            
+            
         }
         
     }

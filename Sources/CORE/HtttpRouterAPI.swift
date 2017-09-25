@@ -120,7 +120,7 @@ extension HttpServerComponent{
                             let requset = Request(api: "/radius/getall")
                             let result =  mk.sendAPIs(requests: [requset])
                             if result.0 == false {
-                                routerResponse.send(json: ["status":400,"message":"\(result.1?.localizedDescription ?? "có thể do lỗi ko lấy được danh sách radius")"])
+                                routerResponse.send(json: ["status":400,"message":"\(result.1?.localizedDescription ?? "") " + "có thể do lỗi ko lấy được danh sách radius"])
                                 next()
                                 return
                             }

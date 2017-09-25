@@ -74,6 +74,7 @@
 
 /* Begin PBXBuildFile section */
 		9925B5C01F739E1C00E8B20B /* Bitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9925B5BE1F739E1200E8B20B /* Bitter.swift */; };
+		99D37E6F1F78E97C001C1CE4 /* HttpCustomerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D37E6E1F78E97C001C1CE4 /* HttpCustomerLogin.swift */; };
 		OBJ_1000 /* SocketProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_317 /* SocketProtocols.swift */; };
 		OBJ_1001 /* SocketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_318 /* SocketUtils.swift */; };
 		OBJ_1007 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_329 /* main.swift */; };
@@ -1125,6 +1126,7 @@
 
 /* Begin PBXFileReference section */
 		9925B5BE1F739E1200E8B20B /* Bitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitter.swift; sourceTree = "<group>"; };
+		99D37E6E1F78E97C001C1CE4 /* HttpCustomerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpCustomerLogin.swift; sourceTree = "<group>"; };
 		"Configuration::Configuration::Product" /* Configuration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Configuration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Configuration::ConfigurationTestExecutable::Product" /* ConfigurationTestExecutable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConfigurationTestExecutable; sourceTree = BUILT_PRODUCTS_DIR; };
 		"CryptoSwift::CryptoSwift::Product" /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2407,6 +2409,7 @@
 				OBJ_17 /* MysqlConnection.swift */,
 				OBJ_18 /* SessionManager.swift */,
 				9925B5BE1F739E1200E8B20B /* Bitter.swift */,
+				99D37E6E1F78E97C001C1CE4 /* HttpCustomerLogin.swift */,
 			);
 			name = CORE;
 			path = Sources/CORE;
@@ -3361,6 +3364,7 @@
 				OBJ_540 /* HtttpRouterAPI.swift in Sources */,
 				OBJ_541 /* LogComponent.swift in Sources */,
 				OBJ_542 /* MikrotikConnection.swift in Sources */,
+				99D37E6F1F78E97C001C1CE4 /* HttpCustomerLogin.swift in Sources */,
 				OBJ_543 /* MysqlConnection.swift in Sources */,
 				OBJ_544 /* SessionManager.swift in Sources */,
 			);

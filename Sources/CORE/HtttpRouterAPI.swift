@@ -27,7 +27,7 @@ extension HttpServerComponent{
         let api = "/api/router"
         router.get(api) { (routerRequest, routerResponse, next) in
             do{
-                try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router ORDER BY id desc", onCompletion: { (results) in
+                try Engine.sharedInstance.mySQLConnection()?.execute("select * from tbl_router where customerName = '\(routerRequest.userProfile?.id ?? "")' ORDER BY id desc", onCompletion: { (results) in
                     if(results.success){
                         routerResponse.send(json: ["status":200,"data":results.asRows!])
                     }else{

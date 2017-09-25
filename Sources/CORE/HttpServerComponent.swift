@@ -37,6 +37,7 @@ public class HttpServerComponent : BaseComponent{
         
         router.all("/api", middleware: credentials)
         router.all(middleware: BodyParser())
+        self.apiForCustommer()
         self.routerAPI()
         self.userAPI()
 //        srouter.all("/ping", middleware: credentials)

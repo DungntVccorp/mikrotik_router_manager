@@ -284,7 +284,7 @@ extension HttpServerComponent{
                                 _ = mk.sendAPIs(requests: arr_profiles)
                             }
                             
-                            try? Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`,`port`,`type`,`use_userman`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")', \(port), \(type),\(use_userman ? 1 : 0))", onCompletion: { (results) in
+                            try? Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`,`port`,`type`,`use_userman`,`customerName`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")', \(port), \(type),\(use_userman ? 1 : 0),\(routerRequest.userProfile?.id ?? "")", onCompletion: { (results) in
                                 if(results.success){
                                     try? Engine.sharedInstance.mySQLConnection()?.execute("select * from `tbl_router` where ip_address = '\(ip_adddress ?? "")'", onCompletion: { (QueryResult) in
                                         
@@ -381,7 +381,7 @@ extension HttpServerComponent{
                                 return
                             }
                             
-                            try? Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`,`port`,`type`,`use_userman`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")', \(port), \(type),\(1))", onCompletion: { (results) in
+                            try? Engine.sharedInstance.mySQLConnection()?.execute("INSERT INTO `tbl_router` (`name`, `username`, `password`, `ip_address`, `description`,`port`,`type`,`use_userman`) VALUES ('\(name ?? "")', '\(user_name ?? "")', '\(password ?? "")', '\(ip_adddress ?? "")', '\(des ?? "")', \(port), \(type),\(use_userman ? 1 : 0))", onCompletion: { (results) in
                                 if(results.success){
                                     try? Engine.sharedInstance.mySQLConnection()?.execute("select * from `tbl_router` where ip_address = '\(ip_adddress ?? "")'", onCompletion: { (QueryResult) in
                                         routerResponse.send(json: ["status":200,"message":"ok","data":QueryResult.asRows ?? []])

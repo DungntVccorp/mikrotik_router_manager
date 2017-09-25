@@ -19,7 +19,7 @@ public class MysqlConnection : BaseComponent{
         mysqlConnection.connect { error in
             Log.info("MYSQL CONNECTED")
             if error != nil {
-                Log.info("MYSQL CONFIG FAILURE")
+                Log.info("MYSQL CONFIG FAILURE" + (error?.localizedDescription ?? ""))
                 fatalError()
             }
         }

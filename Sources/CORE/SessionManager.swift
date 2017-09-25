@@ -14,9 +14,9 @@ public class SessionManager : BaseComponent{
     
 
     
-    var mysqlHostName : String = "localhost"
+    var mysqlHostName : String = "wificonnect.ddns.net"
     var mysqlUserName : String = "root"
-    var mysqlPassword : String = "123456"
+    var mysqlPassword : String = "Anhdung!@321"
     var mysqlDBName : String = "router_manager"
     var dataStorePath : String = "db.plist"
     var public_server_radius_ip : String = "10.3.3.202"
